@@ -2,42 +2,54 @@
 
 import csv
 import matplotlib.pyplot as plt
-## pip install matplotlib
+import numpy as np
+from datetime import datetime
 
 file_path = "test.csv"
 
-dates = []
-temps = []
+date = np.dates = []
+wt = np.winter_temps = []
+st = np.summer_temps = []
+avgt = np.avg_temps = []
 
 with open(file_path,mode='r') as file :
     reader = csv.reader(file)
 
     header = next(reader)
 
-# Alt + 3, 4
-##    i = 0
+    i=0
     for row in reader :
-        a = row[2]
+        a = row[-4]
         b = row[-2]
-        if a.startswith("Dec") :
-            print(a, b)
-            dates.append(a)
-            temps.append(float(b))
-##            i += 1
-##            if i == 10 :
-##                break
+        c = row[5]
+        
+        date.append(a)
+
+        print(a, b)
+        np.winter_temps.append(float(b))
+        
+        print(a, c)
+        np.summer_temps.append(float(c))
+
+        d = (np.summer_temps[i]-np.winter_temps[i])/2
+        print(a, d)
+        np.avg_temps.append(float(d))
+        
+        i= i+1
+        if i==50:
+            break
+plt.plot(date,wt,marker='o',color='b',markersize=5)
+plt.plot(date,st,marker='o',color='r',markersize=5)
+plt.plot(date,avgt,marker='o',color='g',markersize=5)
 
 
-
-plt.plot(dates,temps,marker='o',color='r',linestyle=':',linewidth=10,markersize=5)
 plt.title("Temperature in December", fontsize=15)
+
 plt.xlabel("Date", fontsize=10)
 plt.ylabel("Temperature", fontsize=10)
+
 plt.show()
 
-# 과제 1) 막대 그래프로 기온 출력
-# 과제 2) 선 그래프 2개를 한 화면에 출력
-#       ex) 겨울 최저기온 + 여름 최고기온
 
 
 
