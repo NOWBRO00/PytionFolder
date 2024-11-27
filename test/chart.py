@@ -31,7 +31,7 @@ with open(file_path,mode='r') as file :
         print(a, c)
         np.summer_temps.append(float(c))
 
-        d = (np.summer_temps[i]-np.winter_temps[i])/2
+        d = (np.summer_temps[i]+np.winter_temps[i])/2
         print(a, d)
         np.avg_temps.append(float(d))
         
@@ -50,6 +50,9 @@ plt.ylabel("Temperature", fontsize=10)
 
 plt.show()
 
+# 과제 1) 막대 그래프로 기온 출력
+# 과제 2) 선 그래프 2개를 한 화면에 출력
+#       ex) 겨울 최저기온 + 여름 최고기온
 
 
 
