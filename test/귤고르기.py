@@ -1,24 +1,21 @@
-k = 6
-tangerine = [1, 3, 2, 5, 4, 5, 2, 3]
+from collections import Counter
 
 def solution(k, tangerine):
-    tang = list(set(tangerine))  
-    temp = []  
-    result = 0  
-    answer = 0
+    # 귤크기 : 개수
+    # 딕셔너리 객체 생성
+    dic = Counter(tangerine)
     
-    for i in tang:
-        cnt = tangerine.count(i)
-        temp.append(cnt)
-        
-    temp.sort(reverse=True)
+    # 개수를 기준으로 내림차순 정렬
+    # sorted() 사용 이유는 원본 보존하기 위함
+    li = sorted(dic.values(), reverse=True)
     
-    for i in temp:
-        result += i
-        answer += 1 
-        if result >= k:
-            return answer
-        
-    return answer
-
-print(solution(k, tangerine))
+    total = 0  # 선택한 귤 개수 총합
+    kinds = 0  # 선택한 귤 종류 수
+    
+    for v in li:
+        total += v
+        kinds += 1
+        if total >= k:  # 필요한 만큼의 귤을 선택한 경우 종료
+            break
+    
+    return kinds
